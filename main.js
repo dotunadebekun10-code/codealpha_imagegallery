@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentVisibleItems = [];
     let currentIndex = 0;
 
-    // Initialize visible items
+
     updateVisibleItems();
 
-    // Filtering Logic
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active button
+
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
@@ -28,20 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (filterValue === 'all' || filterValue === category) {
                     item.classList.remove('hidden');
-                    // We need to restore position from absolute to relative to reflow
+
                     item.style.position = 'relative';
                 } else {
                     item.classList.add('hidden');
-                    // Add timeout to allow opacity transition before removing from flow
+
                     setTimeout(() => {
                         if (item.classList.contains('hidden')) {
                             item.style.position = 'absolute';
                         }
-                    }, 500); // matches --transition-slow
+                    }, 500);
                 }
             });
 
-            // Update visible items array for lightbox navigation
+
             setTimeout(updateVisibleItems, 500);
         });
     });
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentVisibleItems = Array.from(galleryItems).filter(item => !item.classList.contains('hidden'));
     }
 
-    // Lightbox Logic
+
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
             const img = item.querySelector('img');
@@ -58,15 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             lightboxImg.src = img.src;
             lightboxCaption.textContent = altText;
-            lightboxImg.className = 'lightbox-img'; // ensures class is applied
+            lightboxImg.className = 'lightbox-img';
             
             currentIndex = currentVisibleItems.indexOf(item);
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         });
     });
 
-    // Close Lightbox
+
     closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    // Navigation
+
     prevBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigate(-1);
@@ -104,17 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextItem = currentVisibleItems[currentIndex];
         const nextImg = nextItem.querySelector('img');
         
-        // Add a small fade effect for image transition
+
         lightboxImg.style.opacity = 0;
         
         setTimeout(() => {
             lightboxImg.src = nextImg.src;
             lightboxCaption.textContent = nextImg.getAttribute('alt');
             lightboxImg.style.opacity = 1;
-        }, 300); // matches --transition-fast
+        }, 300);
     }
 
-    // Keyboard navigation
+
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         

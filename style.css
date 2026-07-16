@@ -1,10 +1,10 @@
 :root {
-    --bg-color: #0f172a; /* Slate 900 */
-    --text-color: #f8fafc; /* Slate 50 */
-    --accent-color: #3b82f6; /* Blue 500 */
-    --accent-hover: #60a5fa; /* Blue 400 */
-    --surface-color: #1e293b; /* Slate 800 */
-    --glass-bg: rgba(30, 41, 59, 0.7);
+    --bg-color: #ffffff;
+    --text-color: #111827;
+    --accent-color: #000000;
+    --accent-hover: #374151;
+    --surface-color: #f3f4f6;
+    --glass-bg: rgba(255, 255, 255, 0.9);
     --transition-fast: 0.3s ease;
     --transition-slow: 0.5s ease;
 }
@@ -31,9 +31,7 @@ header {
 header h1 {
     font-size: 3rem;
     font-weight: 600;
-    background: linear-gradient(to right, #3b82f6, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
 }
 
@@ -48,7 +46,7 @@ main {
     padding: 0 2rem 4rem;
 }
 
-/* Filters */
+
 .filters {
     display: flex;
     justify-content: center;
@@ -60,7 +58,7 @@ main {
 .filter-btn {
     background-color: var(--surface-color);
     color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--surface-color);
     padding: 0.5rem 1.5rem;
     border-radius: 9999px;
     cursor: pointer;
@@ -70,17 +68,17 @@ main {
 }
 
 .filter-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #e5e7eb;
     transform: translateY(-2px);
 }
 
 .filter-btn.active {
     background-color: var(--accent-color);
+    color: #ffffff;
     border-color: var(--accent-color);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
-/* Gallery Grid */
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -102,7 +100,7 @@ main {
     opacity: 0;
     transform: scale(0.9);
     pointer-events: none;
-    position: absolute; /* Remove from flow to collapse grid */
+    position: absolute;
     visibility: hidden;
 }
 
@@ -120,7 +118,7 @@ main {
 .gallery-item .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+    background: rgba(255, 255, 255, 0.9);
     opacity: 0;
     transition: opacity var(--transition-fast);
     display: flex;
@@ -133,15 +131,14 @@ main {
 }
 
 .gallery-item .category {
-    color: #fff;
+    color: var(--text-color);
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 0.85rem;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
     transform: translateY(10px);
     transition: transform var(--transition-fast);
 }
@@ -150,12 +147,11 @@ main {
     transform: translateY(0);
 }
 
-/* Lightbox */
+
 .lightbox {
     position: fixed;
     inset: 0;
-    background-color: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -192,7 +188,7 @@ main {
     margin-top: 1.5rem;
     font-size: 1.2rem;
     font-weight: 300;
-    color: #cbd5e1;
+    color: var(--text-color);
 }
 
 .close-btn {
@@ -201,7 +197,7 @@ main {
     right: 3rem;
     background: transparent;
     border: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 3rem;
     cursor: pointer;
     transition: color var(--transition-fast);
@@ -216,8 +212,8 @@ main {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: var(--surface-color);
+    color: var(--text-color);
     border: none;
     width: 50px;
     height: 50px;
@@ -227,12 +223,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(4px);
     transition: all var(--transition-fast);
 }
 
 .nav-btn:hover {
     background: var(--accent-color);
+    color: #ffffff;
     transform: translateY(-50%) scale(1.1);
 }
 
@@ -244,7 +240,7 @@ main {
     right: -4rem;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .nav-btn {
         width: 40px;
